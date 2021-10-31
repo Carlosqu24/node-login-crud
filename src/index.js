@@ -4,7 +4,7 @@ const path = require('path');
 const exphbs = require('express-handlebars');
 const methodOverride = require('method-override')
 const session = require('express-session');
-
+const flash = require('connect-flash')
 
 // INITIALIZATIONS
 const app = express();
@@ -32,10 +32,16 @@ app.use(session({
       resave: true,
       saveUninitialized: true
 }));
+app.use(flash());
 
 
 // GLOBAL VARIABLES
+app.use((req, res, next) => {
+      res.locals.success_message = req.flash('success_message');
+      res.locals.error_message = req.flash('error_message');
 
+      next();
+});
 
 
 // ROUTES

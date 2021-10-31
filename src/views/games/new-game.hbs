@@ -1,0 +1,28 @@
+{{#each errors }}
+
+<div class="alert alert-danger alert-dismissible fade show" role="alert">
+  {{ text }}
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+
+{{/each }}
+
+<div class="col-md-4 mx-auto">
+      <div class="card">
+            <div class="card-header">
+                  <h3>New Game</h3>
+            </div>
+            <div class="card-body">
+                  <form action="/games/new-game" method="POST">
+                        <div class="form-group">
+                              <input type="text" class="form-control" name="name" placeholder="Name" autofocus>
+                        </div>
+                        <div class="form-group">
+                              <input type="text" class="form-control" name="description" placeholder="Description">
+                        </div>
+                        
+                        <input type="submit" class="btn btn-dark" value="Save game">
+                  </form>
+            </div>
+      </div>
+</div>

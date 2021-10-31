@@ -1,0 +1,33 @@
+<div class="row">
+      {{#each games}}
+            <div class="col-md-3">
+                  <div class="card">
+                        <div class="card-body">
+                              <h2 class="card-title d-flex justify-content-between align-items-center">
+                                    {{ name }}
+                                    <a href="/games/edit/{{_id}}">
+                                          <i class="fas fa-edit"></i>
+                                    </a>
+                              </h2>
+                              <p class="card-description">
+                                    {{ description }}
+                              </p>
+
+                              <form action="/games/delete/{{_id}}?_method=DELETE" method="POST">
+                                    <input type="hidden" name="_method" value="DELETE">
+
+                                    <button class="btn btn-danger btn-sm" type="submit">Delete</button>
+                              </form>
+                        </div>
+                  </div>
+            </div>
+
+            {{else}}
+            <div class="card mx-auto">
+                  <div class="card-body">
+                        <p class="lead">There are not games yet.</p>
+                        <a href="/games/add" class="btn btn-secondary">Add one</a>
+                  </div>
+            </div>
+      {{/each}}
+</div>
