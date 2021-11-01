@@ -4,19 +4,21 @@ const router = express.Router();
 // MODEL
 const Game = require('../models/Game');
 
+const { isAuthenticated } = require('../helpers/auth');
 
-router.get('/games', async (req, res) => {
+
+router.get('/games', isAuthenticated, async (req, res) => {
       
       const games = await Game.find().sort({ date: 'desc' }).lean();
 
       res.render('./games/all-games', { games });
 });
 
-router.get('/games/add', (req, res) => {
+router.get('/games/add', isAuthenticated, (req, res) => {
       res.render('./games/new-game');
 });
 
-router.post('/games/new-game', async (req, res) => {
+router.post('/games/new-game', isAuthenticated, async (req, res) => {
 
       const { name, description } = req.body;
 
@@ -47,7 +49,7 @@ router.post('/games/new-game', async (req, res) => {
 
 });
 
-router.get('/games/edit/:id', async (req, res) => {
+router.get('/games/edit/:id', isAuthenticated, async (req, res) => {
       const gameToEdit = await Game.findById(req.params.id);
 
       const { _id, name, description } = gameToEdit
@@ -55,7 +57,7 @@ router.get('/games/edit/:id', async (req, res) => {
       res.render('./games/edit-game', { _id, name, description });
 });
 
-router.put('/games/edit-game/:id', async (req, res) => {
+router.put('/games/edit-game/:id', isAuthenticated, async (req, res) => {
       const { name, description } = req.body;
 
       await Game.findByIdAndUpdate(req.params.id, { name, description });
@@ -65,7 +67,7 @@ router.put('/games/edit-game/:id', async (req, res) => {
       res.redirect('/games');
 });
 
-router.delete('/games/delete/:id', async (req, res) => {
+router.delete('/games/delete/:id', isAuthenticated, async (req, res) => {
 
       await Game.findByIdAndDelete(req.params.id)
 

@@ -1,1 +1,25 @@
-<h1>Create account</h1>
+<div class="col-md-8 mx-auto">
+      <div class="card">
+            <div class="card-header">
+                  <h3>Sign Up</h3>
+            </div>
+            <div class="card-body">
+                  <form action="/users/signup" method="POST">
+                        <div class="form-group">
+                              <input type="text" class="form-control my-3" name="username" placeholder="Username" autofocus value="{{username}}">
+                        </div>
+                        <div class="form-group">
+                              <input type="email" class="form-control my-3" name="email" placeholder="Email" value="{{email}}">
+                        </div>
+                        <div class="form-group">
+                              <input type="password" class="form-control my-3" name="password" placeholder="Password" value="{{password}}">
+                        </div>
+                        <div class="form-group">
+                              <input type="password" class="form-control my-3" name="confirm_password" placeholder="Confirm password" value="{{confirm_password}}">
+                        </div>
+                        
+                        <input type="submit" class="btn btn-dark" value="Sign Up">
+                  </form>
+            </div>
+      </div>
+</div>
